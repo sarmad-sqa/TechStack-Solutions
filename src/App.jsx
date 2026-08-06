@@ -18,7 +18,7 @@ import {
   Cpu
 } from 'lucide-react';
 
-export default function App() {
+//export default function App() {
   export default function App() {
   // 1. Pehle saari State aur Variables
   const [selectedCategory, setSelectedCategory] = useState('All');
