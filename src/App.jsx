@@ -48,6 +48,13 @@ export default function App() {
           setEmailStatus('');
         }, 2000);
       });
+      const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const categories = ['All', 'Web', 'Mobile', 'Testing', 'Backend', 'Management', 'AI/ML'];
+
+  const filteredServices = selectedCategory === 'All'
+    ? services
+    : services.filter(s => s.category === selectedCategory);
   };
 
   const services = [
@@ -100,12 +107,6 @@ export default function App() {
     features: ['LLM & OpenAI API Integration', 'AI Chatbots & Automation', 'Workflow Optimization & ML Models']
   }
   ];
-
-  const categories = ['All', 'Web', 'Mobile', 'Testing', 'Backend', 'Management', 'AI/ML'];
-
-  const filteredServices = selectedCategory === 'All'
-    ? services
-    : services.filter(s => s.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-500 selection:text-white">
