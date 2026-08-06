@@ -123,7 +123,7 @@ export default function App() {
             Transforming Ideas into High-Quality <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Digital Products</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Hum provide krtey hain end-to-end Custom Web Development, Mobile Apps, QA Automation, aur Scalable Backend Solutions.
+            We design, build, and scale high-performance web and mobile applications. From custom software to automated QA workflows, we transform your vision into market-ready products.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
             <a href="#services" className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium shadow-lg flex items-center justify-center gap-2">
@@ -140,8 +140,8 @@ export default function App() {
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">Our Services</h2>
-            <p className="mt-4 text-slate-600 text-lg">Aap ke project ki har need ke liye humare paas professional solutions hain.</p>
+            <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">Our Core Expertise</h2>
+            <p className="mt-4 text-slate-600 text-lg">Tailored digital solutions to propel your business forward.</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-2 mb-12">
