@@ -18,54 +18,17 @@ import {
   Cpu
 } from 'lucide-react';
 
-//export default function App() {
-  export default function App() {
-  // 1. Pehle saari State aur Variables
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const categories = ['All', 'Web', 'Mobile', 'Testing', 'Backend', 'Management', 'AI/ML'];
-  const filteredServices = selectedCategory === 'All'
-    ? services
-    : services.filter(s => s.category === selectedCategory);
-
-  // 2. Phir Return wala part (jahan UI / HTML hoti hai)
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-800">
-       {/* Aapka saara HTML/JSX yahan hota hai */}
-    </div>
-  );
-} // 👈 App function yahan khatam hota hai
+export default function App() {
+  // 1. All States
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const form = useRef();
   const [emailStatus, setEmailStatus] = useState('');
+  const form = useRef();
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setEmailStatus('Sending...');
+  // 2. Categories List
+  const categories = ['All', 'Web', 'Mobile', 'Testing', 'Backend', 'Management', 'AI/ML'];
 
-    emailjs.sendForm(
-      'service_l636kfb',
-      'template_bg0yijd',
-      form.current,
-      'E-AXlCndjEY-pHuZ4'
-    )
-      .then(() => {
-        setEmailStatus('Message sent successfully! 🚀');
-        form.current.reset();
-        setTimeout(() => {
-          setEmailStatus('');
-        }, 2000);
-      }, (error) => {
-        console.error(error);
-        setEmailStatus('Failed to send message. Please try again.');
-        setTimeout(() => {
-          setEmailStatus('');
-        }, 2000);
-      });
-
-  };
-
+  // 3. Services Data
   const services = [
     {
       id: 1,
@@ -99,25 +62,56 @@ import {
       description: 'Robust RESTful & GraphQL APIs, microservices, aur secure database integration.',
       features: ['Microservices Architecture', 'Database Optimization (SQL/NoSQL)', 'Third-Party API Integration']
     },
-{
-    id: 5,
-    title: 'Agile Project & Product Management',
-    category: 'Management',
-    icon: <Briefcase className="w-8 h-8 text-amber-600" />,
-    description: 'Sprint planning, backlog management, requirements analysis (PRD/User Stories), and seamless team execution for on-time delivery.',
-    features: ['Sprint Planning & Backlog Management', 'User Stories & PRD Documentation', 'Agile Workflow & Release Delivery']
-  },
-  {
-    id: 6,
-    title: 'AI & Machine Learning Solutions',
-    category: 'AI/ML',
-    icon: <Cpu className="w-8 h-8 text-cyan-600" />,
-    description: 'Integrating OpenAI/LLM APIs, predictive machine learning models, smart automated chatbots, and AI workflow automation.',
-    features: ['LLM & OpenAI API Integration', 'AI Chatbots & Automation', 'Workflow Optimization & ML Models']
-  }
+    {
+      id: 5,
+      title: 'Agile Project & Product Management',
+      category: 'Management',
+      icon: <Briefcase className="w-8 h-8 text-amber-600" />,
+      description: 'Sprint planning, backlog management, requirements analysis (PRD/User Stories), and seamless team execution for on-time delivery.',
+      features: ['Sprint Planning & Backlog Management', 'User Stories & PRD Documentation', 'Agile Workflow & Release Delivery']
+    },
+    {
+      id: 6,
+      title: 'AI & Machine Learning Solutions',
+      category: 'AI/ML',
+      icon: <Cpu className="w-8 h-8 text-cyan-600" />,
+      description: 'Integrating OpenAI/LLM APIs, predictive machine learning models, smart automated chatbots, and AI workflow automation.',
+      features: ['LLM & OpenAI API Integration', 'AI Chatbots & Automation', 'Workflow Optimization & ML Models']
+    }
   ];
 
- // return (
+  // 4. Filter Logic
+  const filteredServices = selectedCategory === 'All'
+    ? services
+    : services.filter(s => s.category === selectedCategory);
+
+  // 5. Send Email Handler
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setEmailStatus('Sending...');
+
+    emailjs.sendForm(
+      'service_l636kfb',
+      'template_bg0yijd',
+      form.current,
+      'E-AXlCndjEY-pHuZ4'
+    )
+      .then(() => {
+        setEmailStatus('Message sent successfully! 🚀');
+        form.current.reset();
+        setTimeout(() => {
+          setEmailStatus('');
+        }, 2000);
+      }, (error) => {
+        console.error(error);
+        setEmailStatus('Failed to send message. Please try again.');
+        setTimeout(() => {
+          setEmailStatus('');
+        }, 2000);
+      });
+  };
+
+  return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-500 selection:text-white">
 
       {/* NAVBAR */}
@@ -185,47 +179,46 @@ import {
             <p className="mt-4 text-slate-600 text-lg">Tailored digital solutions to propel your business forward.</p>
           </div>
 
+          {/* Category Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === category ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                  selectedCategory === category
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
               >
                 {category}
               </button>
             ))}
           </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {filteredServices.map((service, index) => (
-    <div key={index} className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-      
-      {/* Dynamic Icon */}
-      <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
-        {service.icon}
-      </div>
-
-      {/* Dynamic Title */}
-      <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-
-      {/* Dynamic Description */}
-      <p className="text-slate-600 mb-6">{service.desc}</p>
-
-      {/* Dynamic Features Bullet Points */}
-      <ul className="space-y-3">
-        {service.features.map((feature, fIdx) => (
-          <li key={fIdx} className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            {feature}
-          </li>
-        ))}
-      </ul>
-
-    </div>
-  ))}
-</div>
+          {/* Dynamic Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredServices.map((service) => (
+              <div key={service.id} className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+                  <p className="text-slate-600 mb-6">{service.description}</p>
+                </div>
+                <ul className="space-y-3 pt-4 border-t border-slate-100">
+                  {service.features.map((feature, fIdx) => (
+                    <li key={fIdx} className="flex items-center text-sm text-slate-600">
+                      <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* WORKFLOW */}
