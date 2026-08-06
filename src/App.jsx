@@ -187,16 +187,34 @@ export default function App() {
       <section id="process" className="py-20 bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold sm:text-4xl">How We Work</h2>
-            <p className="mt-4 text-slate-400 text-lg">Hum Step-by-step Structured Process follow karte hain.</p>
+            <h2 className="text-3xl font-bold sm:text-4xl">OUR PROCESS</h2>
+            <p className="mt-4 text-slate-400 text-lg">A streamlined, battle-tested approach to turn your ideas into high-performing digital products.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { step: '01', title: 'Requirement Gathering', desc: 'Aapke goals aur technical requirements ko detail mein samajhna.' },
-              { step: '02', title: 'Design & Architecture', desc: 'Interactive prototypes, UI designs, aur database schema planning.' },
-              { step: '03', title: 'Agile Development & QA', desc: 'Clean coding paired with continuous manual and automated testing.' },
-              { step: '04', title: 'Deployment & Support', desc: 'Smooth production launch along with ongoing maintenance.' }
+[
+  { 
+    step: '01', 
+    title: 'Requirement Gathering', 
+    desc: 'Deeply analyzing your business goals and technical specifications.' 
+  },
+  { 
+    step: '02', 
+    title: 'Design & Architecture', 
+    desc: 'Crafting interactive prototypes, modern UI designs, and robust database schemas.' 
+  },
+  { 
+    step: '03', 
+    title: 'Agile Development & QA', 
+    desc: 'Writing clean code paired with continuous manual and automated testing.' 
+  },
+  { 
+    step: '04', 
+    title: 'Deployment & Support', 
+    desc: 'Ensuring seamless production launch along with dedicated ongoing maintenance.' 
+  }
+]
             ].map((item, idx) => (
               <div key={idx} className="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
                 <span className="text-4xl font-extrabold text-blue-500 opacity-80 mb-4 block">{item.step}</span>
