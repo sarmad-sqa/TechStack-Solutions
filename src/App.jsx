@@ -36,9 +36,15 @@ export default function App() {
     .then(() => {
         setEmailStatus('Message sent successfully! 🚀');
         form.current.reset();
+        setTimeout(() => {
+          setEmailStatus('');
+          }, 2000);
     }, (error) => {
         console.error(error);
         setEmailStatus('Failed to send message. Please try again.');
+        setTimeout(() => {
+          setEmailStatus('');
+        }, 2000);
     });
   };
 
