@@ -19,6 +19,21 @@ import {
 } from 'lucide-react';
 
 export default function App() {
+  export default function App() {
+  // 1. Pehle saari State aur Variables
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const categories = ['All', 'Web', 'Mobile', 'Testing', 'Backend', 'Management', 'AI/ML'];
+  const filteredServices = selectedCategory === 'All'
+    ? services
+    : services.filter(s => s.category === selectedCategory);
+
+  // 2. Phir Return wala part (jahan UI / HTML hoti hai)
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+       {/* Aapka saara HTML/JSX yahan hota hai */}
+    </div>
+  );
+} // 👈 App function yahan khatam hota hai
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -48,13 +63,7 @@ export default function App() {
           setEmailStatus('');
         }, 2000);
       });
-      const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Web', 'Mobile', 'Testing', 'Backend', 'Management', 'AI/ML'];
-
-  const filteredServices = selectedCategory === 'All'
-    ? services
-    : services.filter(s => s.category === selectedCategory);
   };
 
   const services = [
@@ -108,7 +117,7 @@ export default function App() {
   }
   ];
 
-  return (
+ // return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-500 selection:text-white">
 
       {/* NAVBAR */}
