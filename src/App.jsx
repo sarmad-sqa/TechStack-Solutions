@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   Code2, 
   Smartphone, 
@@ -18,6 +19,28 @@ import {
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const form = useRef();
+  const [emailStatus, setEmailStatus] = useState('');
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setEmailStatus('Sending...');
+
+    emailjs.sendForm(
+      'service_l636kfb',   
+      'template_bg0yijd',  
+      form.current,
+      'E-AXlCndjEY-pHuZ4'    
+    )
+    .then(() => {
+        setEmailStatus('Message sent successfully! 🚀');
+        form.current.reset();
+    }, (error) => {
+        console.error(error);
+        setEmailStatus('Failed to send message. Please try again.');
+    });
+  };
 
   const services = [
     {
@@ -228,30 +251,53 @@ export default function App() {
             </div>
 
             <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
-              <form onSubmit={(e) => { e.preventDefault(); alert('Message Sent!'); }} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
-                  <input type="text" required placeholder="John Doe" className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
-                  <input type="email" required placeholder="john@example.com" className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Service Required</label>
-                  <select className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option>Web Development</option>
-                    <option>Mobile App Development</option>
-                    <option>QA & Automation Testing</option>
-                    <option>Backend & API Services</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
-                  <textarea rows="4" required placeholder="Briefly explain your project..." className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                </div>
-                <button type="submit" className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md transition-all">Send Message</button>
-              </form>
+            <form ref={form} onSubmit={sendEmail} className="space-y-4">
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+    <input 
+      type="text" 
+      name="from_name" 
+      required 
+      placeholder="John Doe" 
+      className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+    <input 
+      type="email" 
+      name="from_email" 
+      required 
+      placeholder="john@example.com" 
+      className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
+    <textarea 
+      name="message" 
+      rows="4" 
+      required 
+      placeholder="Briefly explain your project..." 
+      className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+
+  <button 
+    type="submit" 
+    className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all cursor-pointer"
+  >
+    Send Message
+  </button>
+
+  {emailStatus && (
+    <p className="text-center text-sm font-medium text-blue-600 mt-2">
+      {emailStatus}
+    </p>
+  )}
+</form>
             </div>
           </div>
         </div>
