@@ -1,19 +1,21 @@
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { 
-  Code2, 
-  Smartphone, 
-  Globe, 
-  Database, 
-  ShieldCheck, 
-  Gauge, 
-  Menu, 
-  X, 
-  ArrowRight, 
-  CheckCircle2, 
-  Mail, 
-  Phone, 
-  MapPin 
+import {
+  Code2,
+  Smartphone,
+  Globe,
+  Database,
+  ShieldCheck,
+  Gauge,
+  Menu,
+  X,
+  ArrowRight,
+  CheckCircle2,
+  Mail,
+  Phone,
+  MapPin,
+  Briefcase,
+  Cpu
 } from 'lucide-react';
 
 export default function App() {
@@ -28,24 +30,24 @@ export default function App() {
     setEmailStatus('Sending...');
 
     emailjs.sendForm(
-      'service_l636kfb',   
-      'template_bg0yijd',  
+      'service_l636kfb',
+      'template_bg0yijd',
       form.current,
-      'E-AXlCndjEY-pHuZ4'    
+      'E-AXlCndjEY-pHuZ4'
     )
-    .then(() => {
+      .then(() => {
         setEmailStatus('Message sent successfully! 🚀');
         form.current.reset();
         setTimeout(() => {
           setEmailStatus('');
-          }, 2000);
-    }, (error) => {
+        }, 2000);
+      }, (error) => {
         console.error(error);
         setEmailStatus('Failed to send message. Please try again.');
         setTimeout(() => {
           setEmailStatus('');
         }, 2000);
-    });
+      });
   };
 
   const services = [
@@ -81,33 +83,33 @@ export default function App() {
       description: 'Robust RESTful & GraphQL APIs, microservices, aur secure database integration.',
       features: ['Microservices Architecture', 'Database Optimization (SQL/NoSQL)', 'Third-Party API Integration']
     },
-    {
-      id: 5,
-      title: 'Performance & Load Testing',
-      category: 'Testing',
-      icon: <Gauge className="w-8 h-8 text-amber-600" />,
-      description: 'High-volume load, stress, and endurance testing to keep your system performing seamlessly under peak traffic.',
-      features: ['Load & Stress Testing (JMeter)', 'Bottleneck Analysis', 'Performance Tuning']
-    },
-    {
-      id: 6,
-      title: 'UI/UX Design & Prototyping',
-      category: 'Design',
-      icon: <Code2 className="w-8 h-8 text-rose-600" />,
-      description: 'User-centered design, interactive wireframes, and modern interfaces tailored for conversions.',
-      features: ['Figma / Adobe XD Design', 'Interactive Wireframes', 'Design System Architecture']
-    }
+{
+    id: 5,
+    title: 'Agile Project & Product Management',
+    category: 'Management',
+    icon: <Briefcase className="w-8 h-8 text-amber-600" />,
+    description: 'Sprint planning, backlog management, requirements analysis (PRD/User Stories), and seamless team execution for on-time delivery.',
+    features: ['Sprint Planning & Backlog Management', 'User Stories & PRD Documentation', 'Agile Workflow & Release Delivery']
+  },
+  {
+    id: 6,
+    title: 'AI & Machine Learning Solutions',
+    category: 'AI/ML',
+    icon: <Cpu className="w-8 h-8 text-cyan-600" />,
+    description: 'Integrating OpenAI/LLM APIs, predictive machine learning models, smart automated chatbots, and AI workflow automation.',
+    features: ['LLM & OpenAI API Integration', 'AI Chatbots & Automation', 'Workflow Optimization & ML Models']
+  }
   ];
 
-  const categories = ['All', 'Web', 'Mobile', 'Testing', 'Backend', 'Design'];
+  const categories = ['All', 'Web', 'Mobile', 'Testing', 'Backend', 'Management', 'AI/ML'];
 
-  const filteredServices = selectedCategory === 'All' 
-    ? services 
+  const filteredServices = selectedCategory === 'All'
+    ? services
     : services.filter(s => s.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-500 selection:text-white">
-      
+
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -178,166 +180,165 @@ export default function App() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                  selectedCategory === category ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === category ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
               >
                 {category}
               </button>
             ))}
           </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {/* 1. Web Development */}
-      <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
-          💻
-        </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-3">Web Development</h3>
-        <p className="text-slate-600 mb-6">
-          Building fast, modern, and responsive web applications tailored to your business needs using React, Tailwind, and modern frameworks.
-        </p>
-        <ul className="space-y-3">
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Custom Frontend Development
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Responsive & Mobile-First UI
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Performance & SEO Optimization
-          </li>
-        </ul>
-      </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* 1. Web Development */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
+                💻
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Web Development</h3>
+              <p className="text-slate-600 mb-6">
+                Building fast, modern, and responsive web applications tailored to your business needs using React, Tailwind, and modern frameworks.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Custom Frontend Development
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Responsive & Mobile-First UI
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Performance & SEO Optimization
+                </li>
+              </ul>
+            </div>
 
-      {/* 2. Mobile App Development */}
-      <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
-          📱
-        </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-3">Mobile App Development</h3>
-        <p className="text-slate-600 mb-6">
-          Cross-platform and intuitive mobile application solutions delivering seamless user experiences across iOS and Android.
-        </p>
-        <ul className="space-y-3">
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            iOS & Android App Support
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Smooth UX/UI Design
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            API & Database Integration
-          </li>
-        </ul>
-      </div>
+            {/* 2. Mobile App Development */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
+                📱
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Mobile App Development</h3>
+              <p className="text-slate-600 mb-6">
+                Cross-platform and intuitive mobile application solutions delivering seamless user experiences across iOS and Android.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  iOS & Android App Support
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Smooth UX/UI Design
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  API & Database Integration
+                </li>
+              </ul>
+            </div>
 
-      {/* 3. QA & Automation Testing */}
-      <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
-          🧪
-        </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-3">QA & Automation Testing</h3>
-        <p className="text-slate-600 mb-6">
-          End-to-end automated testing, API testing, performance engineering, and rigorous manual testing to ensure rock-solid quality.
-        </p>
-        <ul className="space-y-3">
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            E2E Cypress Automation
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Postman API & Load Testing
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Bug Tracking & Quality Audit
-          </li>
-        </ul>
-      </div>
+            {/* 3. QA & Automation Testing */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
+                🧪
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">QA & Automation Testing</h3>
+              <p className="text-slate-600 mb-6">
+                End-to-end automated testing, API testing, performance engineering, and rigorous manual testing to ensure rock-solid quality.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  E2E Cypress Automation
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Postman API & Load Testing
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Bug Tracking & Quality Audit
+                </li>
+              </ul>
+            </div>
 
-      {/* 4. Backend & API Services */}
-      <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
-          ⚙️
-        </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-3">Backend & API Services</h3>
-        <p className="text-slate-600 mb-6">
-          Scalable backend architecture, robust RESTful APIs, database design, and cloud integrations for reliable software operations.
-        </p>
-        <ul className="space-y-3">
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            RESTful API Development
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Database Design & Architecture
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Third-Party Service Integration
-          </li>
-        </ul>
-      </div>
+            {/* 4. Backend & API Services */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
+                ⚙️
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Backend & API Services</h3>
+              <p className="text-slate-600 mb-6">
+                Scalable backend architecture, robust RESTful APIs, database design, and cloud integrations for reliable software operations.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  RESTful API Development
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Database Design & Architecture
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Third-Party Service Integration
+                </li>
+              </ul>
+            </div>
 
-      {/* 5. Project & Product Management */}
-      <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
-          🚀
-        </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-3">Agile Project & Product Management</h3>
-        <p className="text-slate-600 mb-6">
-          Sprint planning, backlog management, requirement analysis (PRD/User Stories), and cross-team execution to ensure on-time delivery.
-        </p>
-        <ul className="space-y-3">
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Sprint Planning & Backlog Management
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            User Stories & PRD Documentation
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Agile Workflow & Release Delivery
-          </li>
-        </ul>
-      </div>
+            {/* 5. Project & Product Management */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
+                🚀
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Agile Project & Product Management</h3>
+              <p className="text-slate-600 mb-6">
+                Sprint planning, backlog management, requirement analysis (PRD/User Stories), and cross-team execution to ensure on-time delivery.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Sprint Planning & Backlog Management
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  User Stories & PRD Documentation
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Agile Workflow & Release Delivery
+                </li>
+              </ul>
+            </div>
 
-      {/* 6. AI & Machine Learning Solutions */}
-      <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
-          🤖
-        </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-3">AI & Machine Learning Solutions</h3>
-        <p className="text-slate-600 mb-6">
-          Integrating OpenAI/LLM APIs, predictive machine learning models, smart automated chatbots, and AI workflow solutions.
-        </p>
-        <ul className="space-y-3">
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            LLM & OpenAI API Integration
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            AI Chatbots & Virtual Assistants
-          </li>
-          <li className="flex items-center text-sm text-slate-600">
-            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
-            Workflow Automation & ML Models
-          </li>
-        </ul>
-      </div>
-    </div>
+            {/* 6. AI & Machine Learning Solutions */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl">
+                🤖
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">AI & Machine Learning Solutions</h3>
+              <p className="text-slate-600 mb-6">
+                Integrating OpenAI/LLM APIs, predictive machine learning models, smart automated chatbots, and AI workflow solutions.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  LLM & OpenAI API Integration
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  AI Chatbots & Virtual Assistants
+                </li>
+                <li className="flex items-center text-sm text-slate-600">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 font-bold">✓</span>
+                  Workflow Automation & ML Models
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -386,53 +387,53 @@ export default function App() {
             </div>
 
             <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
-            <form ref={form} onSubmit={sendEmail} className="space-y-4">
-  <div>
-    <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
-    <input 
-      type="text" 
-      name="from_name" 
-      required 
-      placeholder="John Doe" 
-      className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
+              <form ref={form} onSubmit={sendEmail} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                  <input
+                    type="text"
+                    name="from_name"
+                    required
+                    placeholder="John Doe"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
 
-  <div>
-    <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
-    <input 
-      type="email" 
-      name="from_email" 
-      required 
-      placeholder="john@example.com" 
-      className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                  <input
+                    type="email"
+                    name="from_email"
+                    required
+                    placeholder="john@example.com"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
 
-  <div>
-    <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
-    <textarea 
-      name="message" 
-      rows="4" 
-      required 
-      placeholder="Briefly explain your project..." 
-      className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
+                  <textarea
+                    name="message"
+                    rows="4"
+                    required
+                    placeholder="Briefly explain your project..."
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
 
-  <button 
-    type="submit" 
-    className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all cursor-pointer"
-  >
-    Send Message
-  </button>
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all cursor-pointer"
+                >
+                  Send Message
+                </button>
 
-  {emailStatus && (
-    <p className="text-center text-sm font-medium text-blue-600 mt-2">
-      {emailStatus}
-    </p>
-  )}
-</form>
+                {emailStatus && (
+                  <p className="text-center text-sm font-medium text-blue-600 mt-2">
+                    {emailStatus}
+                  </p>
+                )}
+              </form>
             </div>
           </div>
         </div>
