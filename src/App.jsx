@@ -193,28 +193,10 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-[
-  { 
-    step: '01', 
-    title: 'Requirement Gathering', 
-    desc: 'Deeply analyzing your business goals and technical specifications.' 
-  },
-  { 
-    step: '02', 
-    title: 'Design & Architecture', 
-    desc: 'Crafting interactive prototypes, modern UI designs, and robust database schemas.' 
-  },
-  { 
-    step: '03', 
-    title: 'Agile Development & QA', 
-    desc: 'Writing clean code paired with continuous manual and automated testing.' 
-  },
-  { 
-    step: '04', 
-    title: 'Deployment & Support', 
-    desc: 'Ensuring seamless production launch along with dedicated ongoing maintenance.' 
-  }
-]
+              { step: '01', title: 'Requirement Gathering', desc: 'Aapke goals aur technical requirements ko detail mein samajhna.' },
+              { step: '02', title: 'Design & Architecture', desc: 'Interactive prototypes, UI designs, aur database schema planning.' },
+              { step: '03', title: 'Agile Development & QA', desc: 'Clean coding paired with continuous manual and automated testing.' },
+              { step: '04', title: 'Deployment & Support', desc: 'Smooth production launch along with ongoing maintenance.' }
             ].map((item, idx) => (
               <div key={idx} className="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
                 <span className="text-4xl font-extrabold text-blue-500 opacity-80 mb-4 block">{item.step}</span>
